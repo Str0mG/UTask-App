@@ -1,33 +1,62 @@
+import React, {useState, useEffect} from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, Appearance, Modal, Switch,TouchableHighlight } from 'react-native';
+import {MaterialIcons} from '@expo/vector-icons';
+import { ThemeProvider } from 'styled-components';
+import { FontAwesome5 } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons'; 
+
 import Home from '../Screens/Home';
-import Frase from '../Screens/ApiFrase';
+import Frase from '../Screens/Tools';
 import Settings from '../Screens/Settings';
 
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+    const [modal, setModal] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(false);
+
+    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    //Verify if the theme is dark or light
+    const colorScheme = Appearance.getColorScheme();
+
+    
+
+    const darkTheme = {
+        backgroundColor: '#fff',
+      };
+
     return (
+        <ThemeProvider
+            theme={darkTheme}
+        >
         <Tab.Navigator
             screenOptions={{
                 tabBarShowLabel: false,
                 tabBarStyle:{
                     position: 'absolute',
-                    bottom: 20,
+                    bottom: 30,
                     left: 20,
                     right: 20,
-                    backgroundColor: '#2a2a2a',
+                    backgroundColor: '#333333',
                     borderRadius: 20,
                     height: 70,
                     ...styles.shadow,
                     borderTopWidth: 0,
                 },
-                headerTintColor: 'royalblue',
-                headerStyle: {
-                    backgroundColor: '#2a2a2a',
-                },
+                headerTintColor: '#3867D6',
                 
+                headerStyle: {
+                    backgroundColor: '#333333',
+                    borderBottomWidth: 0,
+                    elevation: 0,
+                },
+                headerTitleStyle: {
+                    fontSize: 25,
+                    fontWeight: 'bold',
+                },
             }}
         >
         <Tab.Screen 
@@ -35,40 +64,89 @@ const TabNavigator = () => {
             component={Home} 
             options={{  
                 tabBarIcon: ({ focused }) => (
-                <View style={{alignItems:'center', justifyContent:'center', top:3}}>
-                    <Text style={{color: focused ? '#e32f45' : '#748c94', fontSize:12.5}}>HOME</Text>
+                <View style={{alignItems:'center', justifyContent:'center', top:1}}>
+                    <FontAwesome5 name="tasks" size={21} style={{color: focused ? '#3867D6' : '#C4C4C4'}}/>
+                    
+                    <Text style={{color: focused ? '#3867D6' : '#C4C4C4', fontSize:13.1}}>TASK</Text>
                 </View>
                 ),
-                headerTitle: 'UTask',
+                headerTitle: 'UTask 3.0',
                 headerTitleAlign: 'center',
+                headerRight: () => (
+                    <Switch
+                        trackColor={{ false: "#FFC93F", true: "#111111" }}
+                        thumbColor={isEnabled ? "#FAFAFA" : "#FAFAFA"}
+                        onValueChange={toggleSwitch}
+                        value={isEnabled}
+                        style={{marginRight: 10}}
+                    />),
+                headerLeft: () => (
+                    <TouchableHighlight underlayColor={'none'} onPress={()=> setModal(true)}>
+                        <Image
+                        source={require('../../assets/darkLogo.png')}
+                        style={{top:1,height:'80%',resizeMode: 'contain' }}
+                        />
+                    </TouchableHighlight>
+                    
+                    ),
             }}
         />
         <Tab.Screen 
-            name="Frase" 
+            name="Frase"
             component={Frase}
             options={{  
                 tabBarIcon: ({ focused }) => (
-                <View style={{alignItems:'center', justifyContent:'center', top:3}}>
-                    <Text style={{color: focused ? '#e32f45' : '#748c94', fontSize:12.5}}>FRASE DO DIA</Text>
+                <View style={{alignItems:'center', justifyContent:'center', top:0}}>
+                    <AntDesign name="calendar" size={25} style={{color: focused ? '#3867D6' : '#C4C4C4'}} />
+                    <Text style={{color: focused ? '#3867D6' : '#C4C4C4', fontSize:13}}>TOOLS</Text>
                 </View>
                 ),
-                headerTitle: 'UTask',
+                headerTitle: 'UTask 3.0',
                 headerTitleAlign: 'center',
+                headerRight: () => (
+                    <Switch
+                        trackColor={{ false: "#FFC93F", true: "#111111" }}
+                        thumbColor={isEnabled ? "#FAFAFA" : "#FAFAFA"}
+                        onValueChange={toggleSwitch}
+                        value={isEnabled}
+                        style={{marginRight: 10}}
+                    />),
+                headerLeft: () => (
+                    <TouchableHighlight underlayColor={'none'} onPress={()=> setModal(true)}>
+                        <Image
+                        source={require('../../assets/darkLogo.png')}
+                        style={{top:1,height:'80%',resizeMode: 'contain' }}
+                        />
+                    </TouchableHighlight>),
             }}
         />
-        <Tab.Screen 
-            name="Settings" 
-            component={Settings} 
-            options={{  
-                tabBarIcon: ({ focused }) => (
-                <View style={{alignItems:'center', justifyContent:'center', top:3}}>
-                    <Text style={{color: focused ? '#e32f45' : '#748c94', fontSize:12.5}}>SETTINGS</Text>
-                </View>
-                ),
-                headerTitle: 'UTask',
-                headerTitleAlign: 'center', }}
-        />
+         
         </Tab.Navigator>
+        <Modal          
+            visible={modal}
+            transparent={true}
+            animationType="slide"
+
+        >  
+            
+            <View style={styles.modal}>
+                <Text style={{color:'#fff'}}>Foto</Text>
+                <View style={{flexDirection:'row'}}>
+                    <Text style={{color:'#fff'}}>© Processo de Trainee Unect Jr. 2022.1</Text>
+                    <MaterialIcons name="close" size={30} color="royalblue" onPress={() => setModal(false)} />
+                </View>
+                <View style={{flexDirection:'row'}}>
+                    <Text style={{color:'#fff'}}>Feito com </Text>
+                    <Entypo name="heart" size={19} color="#FFAFAF" />
+                    <Text style={{color:'#fff'}}> por Gabriel Trombini</Text>
+                </View>
+                
+                
+                
+            </View>
+            
+        </Modal>
+        </ThemeProvider>
     );
 }
 
@@ -83,7 +161,13 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.5,
-        elevation: 3,
+        elevation: 3,   
+    },
+    modal:{
+        backgroundColor: '#000',
+        alignItems:'center',
+        alignSelf:'center',
+        top: '20%',
         
     }
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
-const Home = ({navigation}) => {
+const Home = ({}) => {
     return (
         <View style={styles.container}>
             <Text> Home </Text>
@@ -20,6 +20,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#2a2a2a"
+        backgroundColor: "#141414"
     }
 });
