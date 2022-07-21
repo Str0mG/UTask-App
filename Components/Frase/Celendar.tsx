@@ -12,7 +12,6 @@ const Calendario = () => {
                 borderRadius: 20,
             }}
             theme={{
-                
                 calendarBackground: '#3D3D3D',
                 textSectionTitleColor: '#b6c1cd',
                 selectedDayBackgroundColor: '#3867D6',
@@ -22,10 +21,7 @@ const Calendario = () => {
                 textSectionTitleDisabledColor: '#bbc3c9',
                 monthTextColor: '#ffffff',
                 arrowColor: '#226ED8',
-                
               }}
-              
-            
         />
     );
 }
