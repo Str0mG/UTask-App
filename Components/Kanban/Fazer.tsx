@@ -172,7 +172,7 @@ const Fazer = ({}) => {
                         >
                             {({ handleChange, handleBlur, handleSubmit, values,errors, isValid }) => (
                                 <View >
-                                    <Text style={{color:'#226ED8', fontSize:20,alignSelf:'center'}}>Nova Task</Text>
+                                    <Text style={{color:'#226ED8', fontSize:20,alignSelf:'center',textDecorationLine: 'underline'}}>Nova Task</Text>
                                     <Text style={{color:'#fff', fontSize:11}}>Título</Text>
                                     <TextInput
                                         style={styles.input}
