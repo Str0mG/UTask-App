@@ -1,8 +1,8 @@
 # React com Http
 
-Projeto em React Native com de Typescript e com arquitetura Clean Code e implementações de navigations e utilização de api externa.
+Projeto em React Native com uso de Typescript, arquitetura Clean Code, implementações de navigations e utilização de api externa.
 
-O aplicativo é um Kanban na onde tem a organizações de tarefas no estilo TO-DO.
+O aplicativo é uma ferramenta de Kanban na onde o usuário tem a organização das tarefas que ele tem que fazer, está fazendo e que já foi feito.
 
 
 ## Instalar dependencias
