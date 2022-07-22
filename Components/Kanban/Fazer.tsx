@@ -1,12 +1,128 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { View, Text, StyleSheet, Button,ScrollView, Modal,TextInput } from "react-native";
 import {MaterialIcons,Entypo,FontAwesome5,AntDesign} from '@expo/vector-icons';
 import { Formik } from 'formik';
-import Task from '../Task/Task';
+import Task from '../Task/TaskFazer';
+import * as yup from 'yup'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Fazer = ({}) => {
     const [modal, setModal] = useState(false);
+    const [tasks, setTasks] = useState([]);
 
+    useFocusEffect(
+        React.useCallback(() => {
+            getData();
+        }, [])
+      );
+
+    const next = async (value:Object) => {
+        try {
+            const value2 = await AsyncStorage.getItem('@fazer')
+            
+            if(value2 !== null) {
+                const task = JSON.parse(value2)
+                
+                const index = task.map(function(e) { return e.title; }).indexOf(value.title)
+                task.splice(index, 1)
+                const jsonValue = JSON.stringify(task)
+                await AsyncStorage.setItem('@fazer', jsonValue)
+                getData()
+            }
+        }
+        catch(e) {
+            // error reading value
+            console.log(e)
+        }
+        try {
+            const tasksFazer = await AsyncStorage.getItem('@fazendo')
+            
+            if(tasksFazer !== null) {
+                const task = JSON.parse(tasksFazer)
+                task.push(value)
+                const jsonValue = JSON.stringify(task)
+                await AsyncStorage.setItem('@fazendo', jsonValue)
+                
+            }
+            else if(tasksFazer === null) {
+                try {
+                    
+                    const jsonValue = JSON.stringify([value])
+                    await AsyncStorage.setItem('@fazendo', jsonValue)
+                    
+                  } catch (e) {
+                    // saving error
+                  }
+            }
+          } catch(e) {
+            // error reading value
+            console.log(e)
+        }
+      }
+
+    const storeData = async (value:Object) => {
+        try {
+            const tasksFazer = await AsyncStorage.getItem('@fazer')
+            if(tasksFazer !== null) {
+                const task = JSON.parse(tasksFazer)
+                task.push(value)
+                const jsonValue = JSON.stringify(task)
+                await AsyncStorage.setItem('@fazer', jsonValue)
+                getData()
+            }
+            else if(tasksFazer === null) {
+                try {
+                    
+                    const jsonValue = JSON.stringify([value])
+                    await AsyncStorage.setItem('@fazer', jsonValue)
+                    getData()
+                  } catch (e) {
+                    // saving error
+                  }
+            }
+          } catch(e) {
+            // error reading value
+            console.log(e)
+        }
+      }
+      const getData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('@fazer')
+          
+          if(value !== null) setTasks(JSON.parse(value))
+        } catch(e) {
+          // error reading value
+          
+        }
+      }
+      
+      const removeData = async (value) => {
+        
+        try {
+            const value2 = await AsyncStorage.getItem('@fazer')
+            
+            if(value2 !== null) {
+                const task = JSON.parse(value2)
+                
+                const index = task.map(function(e) { return e.title; }).indexOf(value.title)
+                task.splice(index, 1)
+                const jsonValue = JSON.stringify(task)
+                await AsyncStorage.setItem('@fazer', jsonValue)
+                getData()
+            }
+        }
+        catch(e) {
+            // error reading value
+            console.log(e)
+        }
+    }
+
+
+    const esquema = yup.object().shape({
+        title: yup.string().required('O titulo é obrigatório').min(3, 'O titulo deve ter no mínimo 3 caracteres').max(20, 'O titulo deve ter no máximo 25 caracteres'),
+    })
+    
     return (
         <View style={styles.container}>
             <View style={styles.raia}>
@@ -18,13 +134,13 @@ const Fazer = ({}) => {
                     }}
                     fadingEdgeLength={20}
                     >
-                    <Task />
-                    <Task />
-                    <Task />
-                    <Task />
-                    <Task />
-                    <Task />
-                    <Task />
+                    {tasks.map((task, index) => {
+                        return (
+                            <Task key={index} tassk={task} removeData={() => removeData(task)} next={() => next(task)}/>
+                        )
+                    })}
+
+                    
                 </ScrollView>
             </View>
             <Button
@@ -45,11 +161,16 @@ const Fazer = ({}) => {
                         initialValues={{
                             title: '',
                             description: '',
-                            status: 'fazer',
+                            id: Date.now(),
                         }}
-                        onSubmit={values => {
-                            console.log(values);}}>
-                            {({ handleChange, handleBlur, handleSubmit, values }) => (
+                        validationSchema={esquema}
+                        onSubmit={(values, actions) => {
+                            storeData(values)
+                            setModal(false)
+                            actions.resetForm()
+                        }}
+                        >
+                            {({ handleChange, handleBlur, handleSubmit, values,errors, isValid }) => (
                                 <View >
                                     <Text style={{color:'#226ED8', fontSize:20,alignSelf:'center'}}>Nova Task</Text>
                                     <Text style={{color:'#fff', fontSize:11}}>Título</Text>
@@ -62,6 +183,7 @@ const Fazer = ({}) => {
                                         selectionColor='#fff'
                                         
                                     />
+                                    {errors.title && <Text style={{color:'red', fontSize:11}}>{errors.title}</Text>}
                                     <Text style={{color:'#fff', fontSize:11}}>Descrição</Text>
                                     <TextInput
                                         multiline={true}
@@ -75,15 +197,30 @@ const Fazer = ({}) => {
                                     <View style={styles.buttons}>
                                         <Button
 
-                                            title="Cancelar"
+                                            title="Listar"
                                             color="#3867D6"
                                             accessibilityLabel="Learn more about this purple button"
-                                            onPress={()=> setModal(false)}
+                                            onPress={() => {
+                                                setModal(false)
+                                                getData()
+                                            }}
                                         />
                                         <Button
                                             title="Adicionar"
                                             color="#3867D6"
                                             accessibilityLabel="Learn more about this purple button"
+                                            onPress={()=> {
+                                                handleSubmit()
+                                            }}
+                                        />
+                                        <Button
+                                            title="Remover"
+                                            color="#3867D6"
+                                            accessibilityLabel="Learn more about this purple button"
+                                            onPress={()=> {
+                                                removeData(values);
+                                            }}
+                                            
                                         />
                                     </View>
                                 </View>
@@ -136,7 +273,7 @@ const styles = StyleSheet.create({
     input:{
         marginTop:5,
         padding:10,
-        marginBottom:10,
+        marginBottom:1,
         borderRadius:10,
         width:300,
         alignSelf:'center',

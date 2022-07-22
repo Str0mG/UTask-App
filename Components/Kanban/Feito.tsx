@@ -40,11 +40,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#141414"
     },
     raia:{
-        marginTop:100,
+        marginTop:80,
         backgroundColor: "#333333",
-        width:290,
+        width:300,
         borderRadius:10,
         marginBottom:20,
-        height: 450,
+        height: 470,
     }
 });
