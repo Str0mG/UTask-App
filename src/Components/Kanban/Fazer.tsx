@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import { View, Text, StyleSheet, Button,ScrollView, Modal,TextInput } from "react-native";
+import { View, Text, StyleSheet, Button,ScrollView, Modal,TextInput,TouchableHighlight } from "react-native";
 import { Formik } from 'formik';
 import Task from '../Task/TaskFazer';
 import * as yup from 'yup'
 import {useSelector, useDispatch} from 'react-redux';
-
+import { AntDesign } from '@expo/vector-icons';
 import {actions} from '../../actions/task.actions';
 
 const Fazer = ({}) => {
@@ -14,7 +14,7 @@ const Fazer = ({}) => {
     const dispatch = useDispatch();
     
     const esquema = yup.object().shape({
-        title: yup.string().required('O titulo é obrigatório').min(3, 'O titulo deve ter no mínimo 3 caracteres').max(20, 'O titulo deve ter no máximo 25 caracteres'),
+        title: yup.string().required('O titulo é obrigatório').min(3, 'O titulo deve ter no mínimo 3 caracteres').max(25, 'O titulo deve ter no máximo 25 caracteres'),
     })
     
     return (
@@ -38,14 +38,20 @@ const Fazer = ({}) => {
             <Modal          
                 visible={modal}
                 transparent={true}
-                animationType="slide">  
+                animationType="slide">
+                
                 
                 <View style={styles.modal}>
+                
+                <AntDesign name="closecircleo" size={22} color="red" onPress={()=> setModal(false)}  style={{position:'absolute', right:0,top:0,paddingTop:16, paddingRight:9}} />
+                
+                
                     <Formik
                         initialValues={{title: '',description: '',id: Date.now(),raia: 0}}
                         validationSchema={esquema}
-                        onSubmit={(values, actions) => {
-                            
+                        onSubmit={(values) => {
+                            dispatch(actions.adicionar(values));
+                            setModal(false)
                         }}>
                             {({ handleChange, handleBlur, handleSubmit, values,errors, isValid }) => (
                                 <View >
@@ -72,27 +78,13 @@ const Fazer = ({}) => {
                                     />
                                     <View style={styles.buttons}>
                                         <Button
-                                            title="Listar"
-                                            color="#3867D6"
-                                            accessibilityLabel="Learn more about this purple button"
-                                            onPress={() => {
-                                                console.log(values)
-                                                setModal(false)}}/>
-                                        <Button
                                             title="Adicionar"
                                             color="#3867D6"
                                             accessibilityLabel="Learn more about this purple button"
                                             onPress={()=> {
-                                                dispatch(actions.adicionar(values));
-                                                setModal(false)
+                                                handleSubmit();
                                                 }}/>
-                                        <Button
-                                            title="Remover"
-                                            color="#3867D6"
-                                            accessibilityLabel="Learn more about this purple button"
-                                            onPress={()=> {
-                                                
-                                            }}/>
+                                        
                                     </View>
                                 </View>
                             )}
@@ -166,10 +158,10 @@ const styles = StyleSheet.create({
     },
     buttons:{
         flexDirection:'row',
-        justifyContent:'space-between',
         width:300,
         alignSelf:'center',
         alignItems:'center',
+        justifyContent:'center',
         marginTop:10,
     },
     button:{

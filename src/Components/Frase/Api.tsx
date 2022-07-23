@@ -27,12 +27,12 @@ const Api = () => {
           });
           if (result.action === Share.sharedAction) {
             if (result.activityType) {
-              // shared with activity type of result.activityType
+              alert("Não foi possível compartilhar a frase");
             } else {
-              // shared
+              alert("Não foi possível compartilhar a frase");
             }
           } else if (result.action === Share.dismissedAction) {
-            // dismissed
+            alert("Não foi possível compartilhar a frase");
           }
         } catch (error) {
           alert("Não foi possível compartilhar a frase");
@@ -41,19 +41,20 @@ const Api = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.box}>
-                <MaterialIcons name="insights" size={24} color="#226ED8" style={{position:'absolute',left:7, top:0}} />
-                <Text style={{color:'#fff'}} >Frase do dia</Text>
-                <TouchableHighlight onPress={onShare}>
-                  <FontAwesome name="share" size={16} color="#fff" style={{position:'absolute', margin:3}} />
-                </TouchableHighlight>
-                
-            </View>
-            <Text style={{color:'#fff', justifyContent:'center', alignSelf:'center'}}>{frase}</Text>
+          <TouchableHighlight
+            onPress={onShare}
+          >
+              <FontAwesome name="share" size={16} color="#fff"  style={{position:'absolute', right:0, top:0, paddingRight:14, paddingTop:8}} />
+          </TouchableHighlight>
+          <MaterialIcons name="insights" size={24} color="#226ED8" style={{position:'absolute',left:7, top:4, padding:9}} />
+          
+          <Text style={{color:'#fff', paddingLeft:50,fontSize:15, paddingTop:4, fontWeight:'bold', width:200}} >Frase do dia</Text>
+            
+            <Text style={{color:'#fff',paddingLeft:50,maxWidth:300, paddingTop:10,textAlign: 'justify'}}>{frase}</Text>
             <ActivityIndicator
                 size="large"
                 animating={loading}
-                style={{position:'absolute', top:35}}
+                style={{position:'absolute', alignSelf:'center', paddingTop:50}}
             ></ActivityIndicator>
         </View>
     );    
@@ -64,8 +65,7 @@ export default Api;
 const styles = StyleSheet.create({
     container: {
         width:360,
-        alignItems: "center",
-        justifyContent: "center",
+        minHeight:100,
         borderRadius: 20,
         backgroundColor: "#3D3D3D",
         position: 'relative',

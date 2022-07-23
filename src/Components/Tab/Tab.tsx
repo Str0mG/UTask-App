@@ -142,8 +142,9 @@ const TabNavigator = () => {
                             <Text style={{color:'#fff'}}>Feito com </Text>
                             <Entypo name="heart" size={19} color="#FFAFAF" />
                             <Text style={{color:'#fff'}}> por Gabriel Trombini</Text>
+                            
                         </View>
-                        
+                        <Text style={{color:'#fff'}}> Version 1.0.0-0</Text>
                         
                         
                     </View>
