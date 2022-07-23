@@ -9,10 +9,10 @@ const Api = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("https://thesimpsonsquoteapi.glitch.me/quotes")
+        fetch("https://zenquotes.io/api/random")
         .then(response => response.json())
         .then(data => {
-            setFrase(data[0].quote+" - "+data[0].character);
+            setFrase(data[0].q+"- "+data[0].a);
             setLoading(false);
         })
         .catch(() => {

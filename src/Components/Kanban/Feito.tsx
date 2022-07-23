@@ -1,9 +1,13 @@
+import { View,  StyleSheet, ScrollView } from "react-native";
 import React from "react";
-import { View, Text, StyleSheet, Button,ScrollView } from "react-native";
+import {useSelector} from 'react-redux';
 
-import Task from '../Task/Task';
+import Task from '../Task/TaskFeito';
+
 
 const Feito = ({}) => {
+    const task = useSelector((state:any) => state.taskReducers.tasks.filter((task:any) => task.raia === 2));
+
     return (
         <View style={styles.container}>
             <View style={styles.raia}>
@@ -16,13 +20,11 @@ const Feito = ({}) => {
                         
                     }}
                     
-                    fadingEdgeLength={20}
+                    fadingEdgeLength={20}>
                     
-                    
-                    >
-                    
-                    
-                    
+                    {task.map((task:any) => (
+                        <Task key={task.id} task={task} />
+                    ))}
                     
                 </ScrollView>
             </View>

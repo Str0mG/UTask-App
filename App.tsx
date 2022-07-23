@@ -1,14 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 
-import TabNavigator from './Components/Tab/Tab';
+import TabNavigator from './src/Components/Tab/Tab';
 
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <StatusBar style="light" />
-      <TabNavigator />
-    </NavigationContainer>
+      <NavigationContainer>
+        <StatusBar style="auto" />
+        <TabNavigator />
+      </NavigationContainer>
   );
 }

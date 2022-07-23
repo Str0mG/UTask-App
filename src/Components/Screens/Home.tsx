@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import Feito from '../Kanban/Feito';
@@ -12,18 +12,17 @@ const Home2 = ({}) => {
 
     return (
        <Tab.Navigator
-            
             backBehavior="order"
             initialRouteName="Fazer"
             screenOptions={{
                 tabBarLabelStyle: { fontSize: 13, fontWeight: 'bold', color: '#fff' },
                 tabBarStyle: { backgroundColor: '#101010' },
               }}
+            initialLayout={{ width: Dimensions.get('window').width }}
        >
             <Tab.Screen name="Fazer" component={Fazer} />
             <Tab.Screen name="Fazendo" component={Fazendo} />
-            <Tab.Screen name="Feito" component={Feito} />
-            
+            <Tab.Screen name="Feito" component={Feito}  />
         </Tab.Navigator>
     );
 }
