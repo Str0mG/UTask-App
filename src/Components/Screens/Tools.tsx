@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet} from "react-native";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import Api from "../Frase/Api"
 import Calendario from "../Frase/Celendar"
@@ -9,11 +10,11 @@ const Frase = () => {
     
     return (
         <View style={styles.container}>
-            <View style={{marginTop:80}}>
+            <View style={{marginTop:hp('5%')}}>
                 <Api/>
             </View>
             
-            <View style={{marginTop:40}}>
+            <View style={{marginTop:hp('6%')}}>
                 <Calendario/>
             </View>
             

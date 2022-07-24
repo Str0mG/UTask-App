@@ -1,6 +1,7 @@
 import { View, StyleSheet,ScrollView } from "react-native";
 import React from "react";
 import {useSelector} from 'react-redux';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import Task from '../Task/TaskFazendo';
 
@@ -38,11 +39,13 @@ const styles = StyleSheet.create({
         backgroundColor: "#141414"
     },
     raia:{
-        marginTop:80,
-        backgroundColor: "#333333",
-        width:300,
+        marginTop:hp('7%'),
+        marginBottom:hp('2%'),
+        height: hp('50%'),
+        width:wp('75%'),
         borderRadius:10,
-        marginBottom:20,
-        height: 470,
+        backgroundColor: "#333333",
+        flexDirection: 'column',
+        justifyContent:'center'
     }
 });

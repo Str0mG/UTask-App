@@ -28,12 +28,3 @@ const Home2 = ({}) => {
 }
 
 export default Home2;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#141414"
-    }
-});

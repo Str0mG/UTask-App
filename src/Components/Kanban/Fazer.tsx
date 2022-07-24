@@ -7,6 +7,11 @@ import {useSelector, useDispatch} from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 import {actions} from '../../actions/task.actions';
 
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
+import {useTheme} from 'styled-components/native';
+
+
 const Fazer = ({}) => {
     const task = useSelector((state:any) => state.taskReducers.tasks.filter((task:any) => task.raia === 0));
     const [modal, setModal] = useState(false);
@@ -22,9 +27,8 @@ const Fazer = ({}) => {
             <View style={styles.raia}>
                 <ScrollView 
                     centerContent={true}
-                    contentContainerStyle={{justifyContent: 'space-between',alignItems: 'center',}}
-                    fadingEdgeLength={20}>
                     
+                    fadingEdgeLength={20}>
                     {task.map((task:any) => (<Task key={task.id} task={task} />))}
 
                 </ScrollView>
@@ -101,15 +105,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: "#141414"
+        backgroundColor: "#141414",
     },
     raia:{
-        marginTop:80,
-        backgroundColor: "#333333",
-        width:300,
+        marginTop:hp('7%'),
+        marginBottom:hp('2%'),
+        height: hp('50%'),
+        width:wp('75%'),
         borderRadius:10,
-        marginBottom:20,
-        height: 470,
+        backgroundColor: "#333333",
+        flexDirection: 'column',
+        justifyContent:'center'
     },
     modal:{
         backgroundColor: '#3D3D3D',

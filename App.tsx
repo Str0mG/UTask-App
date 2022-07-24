@@ -7,8 +7,9 @@ import TabNavigator from './src/Components/Tab/Tab';
 export default function App() {
   return (
       <NavigationContainer>
-        <StatusBar style="auto" />
+        <StatusBar style="light" />
         <TabNavigator />
+        
       </NavigationContainer>
   );
 }

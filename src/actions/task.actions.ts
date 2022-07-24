@@ -21,6 +21,10 @@ const actions = {
         type: actionsTypes.REPLAY_TASK,
         payload: task
     }),
+    edit: (task: any) => ({
+        type: actionsTypes.EDIT_TASK,
+        payload: task
+    }),
 }
 
 export { actions }

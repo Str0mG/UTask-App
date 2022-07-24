@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { View,Text,StyleSheet,Share,ActivityIndicator,TouchableHighlight } from "react-native";
 import { FontAwesome,MaterialIcons } from '@expo/vector-icons';
-
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const Api = () => {
     
