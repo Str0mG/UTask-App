@@ -16,7 +16,8 @@ const Api = () => {
             setLoading(false);
         })
         .catch(() => {
-            alert("Não foi possível obter a frase");
+            setLoading(false);
+            setFrase("Se ficar pensando no que perdeu, nunca conseguirá ver o que está por vir. - Remy")
             });
     }, []);
     
