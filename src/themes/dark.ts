@@ -17,6 +17,7 @@ export const dark: DefaultTheme = {
         backgroudBottomTab:'#333333',
         backgroundApi:'#3D3D3D',
         insight:'#226ED8',
+        backgroundModalSE:'#000000'
         
 
     },

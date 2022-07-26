@@ -17,6 +17,7 @@ export const light: DefaultTheme = {
         backgroudBottomTab:'#ffffff',
         backgroundApi:'#FFFFFF',
         insight:'#FBB910',
+        backgroundModalSE:'#ffffff'
     },
     images:{
         logoUnect: require('../../assets/lightLogo.png'),

@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Text, View, Image,Switch,TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Image,Switch,TouchableWithoutFeedback } from 'react-native';
 import {FontAwesome5,AntDesign} from '@expo/vector-icons';
 import { PersistGate } from 'redux-persist/integration/react'
 import { Provider } from 'react-redux'
@@ -25,7 +25,7 @@ const TabNavigator = () => {
 
     const isDarkMode = theme === ThemeType.dark
 
-    const toggleModal = () => setModal(previousState => !previousState);
+    const toggleModal = (aux:boolean) => setModal(aux);
 
     return (
         <Provider store={store}>
@@ -79,12 +79,12 @@ const TabNavigator = () => {
                                 
                             />),
                             headerLeft: () => (
-                                <TouchableHighlight onPress={()=> setModal(true)}>
+                                <TouchableWithoutFeedback onPress={()=> setModal(true)}>
                                     <Image
                                     source={images.logoUnect}
                                     style={{top:1,height:'80%',resizeMode: 'contain' }}
                                     />
-                                </TouchableHighlight>
+                                </TouchableWithoutFeedback>
                                 ),}}/>
                 <Tab.Screen 
                     
@@ -110,12 +110,12 @@ const TabNavigator = () => {
                                 iconColor={{true: "#222222", false: "#FBB910"}}
                             />),
                         headerLeft: () => (
-                            <TouchableHighlight  onPress={()=> setModal(true)}>
+                            <TouchableWithoutFeedback onPress={()=> setModal(true)}>
                                 <Image
                                 source={images.logoUnect}
                                 style={{top:1,height:'80%',resizeMode: 'contain' }}
                                 />
-                            </TouchableHighlight>),
+                            </TouchableWithoutFeedback>),
                     }}
                 />
                 

@@ -3,16 +3,11 @@ import {actionsTypes} from '../constants/task';
 const INITIAL_STATE = {
     tasks: [{
         id: 1,
-        title: 'Task 2',
-        description: 'Task 1 description',
+        title: 'Welcome to UTask 3.0',
+        description: 'Espero que goste :)',
         raia: 0
     },
-    {
-        id: 2,
-        title: 'Task 1',
-        description: 'Task 1 description',
-        raia: 1
-    }],
+    ],
 }
 
 const reducers = (state = INITIAL_STATE, action:any) => {

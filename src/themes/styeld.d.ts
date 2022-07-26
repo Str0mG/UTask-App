@@ -20,6 +20,7 @@ declare module 'styled-components' {
         backgroudBottomTab:string,
         backgroundApi:string,
         insight:string,
+        backgroundModalSE:string
         
 
 
