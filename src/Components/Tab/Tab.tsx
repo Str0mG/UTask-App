@@ -38,7 +38,7 @@ const TabNavigator = () => {
                             bottom: 30,
                             left: 20,
                             right: 20,
-                            backgroundColor: '#333333',
+                            backgroundColor: colors.backgroudBottomTab,
                             borderRadius: 20,
                             height: 70,
                             ...styles.shadow,
@@ -72,9 +72,14 @@ const TabNavigator = () => {
                                 onValueChange={toggleTheme}
                                 value={isDarkMode}
                                 style={{marginRight: 10}}
+                                trackColor={{true: "#222222", false: "#FFC93F"}}
+                                thumbColor={{true: "#FFFFFF", false: "#FFFFFF"}}
+                                icon={{true: require('../../../assets/moon.png'), false: require('../../../assets/sun2.png')}}
+                                iconColor={{true: "#222222", false: "#FBB910"}}
+                                
                             />),
                             headerLeft: () => (
-                                <TouchableHighlight underlayColor={'none'} onPress={()=> setModal(true)}>
+                                <TouchableHighlight onPress={()=> setModal(true)}>
                                     <Image
                                     source={images.logoUnect}
                                     style={{top:1,height:'80%',resizeMode: 'contain' }}
@@ -99,10 +104,13 @@ const TabNavigator = () => {
                                 onValueChange={toggleTheme}
                                 value={isDarkMode}
                                 style={{marginRight: 10}}
-                                
+                                trackColor={{true: "#222222", false: "#FFC93F"}}
+                                thumbColor={{true: "#FFFFFF", false: "#FFFFFF"}}
+                                icon={{true: require('../../../assets/moon.png'), false: require('../../../assets/sun2.png')}}
+                                iconColor={{true: "#222222", false: "#FBB910"}}
                             />),
                         headerLeft: () => (
-                            <TouchableHighlight underlayColor={'none'} onPress={()=> setModal(true)}>
+                            <TouchableHighlight  onPress={()=> setModal(true)}>
                                 <Image
                                 source={images.logoUnect}
                                 style={{top:1,height:'80%',resizeMode: 'contain' }}

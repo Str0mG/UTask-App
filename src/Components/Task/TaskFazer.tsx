@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, StyleSheet, Alert, TouchableWithoutFeedback} from "react-native";
 import {MaterialCommunityIcons,Entypo,AntDesign,Ionicons} from '@expo/vector-icons';
 import {useDispatch} from 'react-redux';
@@ -9,14 +9,10 @@ import { useTheme } from "styled-components";
 
 const Task = (task:any) => {
     const {colors} = useTheme()
-    const [visible, setVisible] = React.useState(false);
-    const [desc, setDesc] = React.useState('Ler Descrição');
-
-    
-    interface emoti {
-        nome: string
-    }
-    const [emoti, setEmoti] = React.useState<'chevron-small-up' | 'chevron-small-down'>('chevron-small-down');
+    const [visible, setVisible] = useState(false);
+    const [desc, setDesc] = useState('Ler Descrição');
+    const [isHide, setIsHide] = useState(true)
+    const [emoti, setEmoti] = useState<'chevron-small-up' | 'chevron-small-down'>('chevron-small-down');
 
     const dispatch = useDispatch();
     const handleDelete = ( ) => {
@@ -27,7 +23,6 @@ const Task = (task:any) => {
                 {text: 'Cancel'},
                 {text: 'OK', onPress: () => dispatch(actions.remover(task.task))},
             ],
-            
           ) 
     }
 
@@ -40,12 +35,11 @@ const Task = (task:any) => {
         if(desc === 'Ler Descrição'){
             setDesc('Esconder Descrição');
             setEmoti('chevron-small-up');
-            
-            
+            setIsHide(false);
         }else{
             setDesc('Ler Descrição');
             setEmoti('chevron-small-down');
-            
+            setIsHide(true);
         }
     }
 
@@ -56,12 +50,12 @@ const Task = (task:any) => {
                 <Text style={[{alignSelf:'flex-start',fontWeight:'bold', fontSize:16, padding:10},{color:colors.text}]}>  {task.task.title} </Text>
                 <TouchableWithoutFeedback onPress={handleVisibility} style={{width:140}}>
                     <View style={{flexDirection:'row', paddingLeft:17}}>
-                        <Text style={{fontSize:13, paddingTop:10, color:colors.text}} >{desc}</Text>
-                        <Entypo name={emoti} size={18} style={{paddingTop:11 ,color:colors.text}}/>
+                        <Text style={{fontSize:13, paddingTop:10, color:isHide ? colors.text:colors.hideDesc}} >{desc}</Text>
+                        <Entypo name={emoti} size={18} style={{paddingTop:11 ,color:isHide ? colors.text:colors.hideDesc}}/>
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={{}}>
-                    {visible && <Text style={[{color:'#000', maxWidth:230, paddingLeft:18, paddingBottom:10,textAlign: 'justify'},{color:colors.text}]}>{task.task.description} asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdddddd_</Text>}
+                    {visible && <Text style={{ maxWidth:230, paddingLeft:18, paddingBottom:10,textAlign: 'justify',color:colors.text}}>{task.task.description} asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdddddd_</Text>}
                 </View>
                 
                 

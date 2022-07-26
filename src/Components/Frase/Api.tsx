@@ -2,11 +2,13 @@ import React, {useState, useEffect} from "react";
 import { View,Text,StyleSheet,Share,ActivityIndicator,TouchableHighlight } from "react-native";
 import { FontAwesome,MaterialIcons } from '@expo/vector-icons';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { useTheme } from "styled-components/native";
 
 const Api = () => {
     
     const [frase, setFrase] = useState("");
     const [loading, setLoading] = useState(true);
+    const {colors} = useTheme()
 
     useEffect(() => {
         fetch("https://zenquotes.io/api/random")
@@ -41,17 +43,17 @@ const Api = () => {
       };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container,{backgroundColor:colors.backgroundApi}]}>
           <TouchableHighlight
             onPress={onShare}
           >
-              <FontAwesome name="share" size={16} color="#fff"  style={{position:'absolute', right:0, top:0, paddingRight:14, paddingTop:8}} />
+              <FontAwesome name="share" size={16} color={colors.text} style={{position:'absolute', right:0, top:0, paddingRight:14, paddingTop:8}} />
           </TouchableHighlight>
-          <MaterialIcons name="insights" size={24} color="#226ED8" style={{position:'absolute',left:7, top:4, padding:9}} />
+          <MaterialIcons name="insights" size={24} color={colors.insight} style={{position:'absolute',left:7, top:4, padding:9}} />
           
-          <Text style={{color:'#fff', paddingLeft:50,fontSize:15, paddingTop:4, fontWeight:'bold', width:200}} >Frase do dia</Text>
+          <Text style={{color:colors.text, paddingLeft:50,fontSize:15, paddingTop:4, fontWeight:'bold', width:200}}>Frase do dia</Text>
             
-            <Text style={{color:'#fff',paddingLeft:50,maxWidth:300, paddingTop:10,textAlign: 'justify'}}>{frase}</Text>
+            <Text style={{color:colors.text,paddingLeft:50,maxWidth:300, paddingTop:10,textAlign: 'justify'}}>{frase}</Text>
             <ActivityIndicator
                 size="large"
                 animating={loading}
@@ -68,7 +70,6 @@ const styles = StyleSheet.create({
         width:360,
         minHeight:100,
         borderRadius: 20,
-        backgroundColor: "#3D3D3D",
         position: 'relative',
         padding:10,
         

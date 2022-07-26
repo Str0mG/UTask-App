@@ -14,6 +14,14 @@ declare module 'styled-components' {
         trash:string;
         hideDesc:string;
         input:string,
+        borderModal: string,
+        headerKanban:string,
+        indicatorTab:string,
+        backgroudBottomTab:string,
+        backgroundApi:string,
+        insight:string,
+        
+
 
     },
     images:{

@@ -16,7 +16,7 @@ const Fazer = ({}) => {
     const task = useSelector((state:any) => state.taskReducers.tasks.filter((task:any) => task.raia === 0));
     const [modal, setModal] = useState(false);
     const {colors} = useTheme()
-
+    
     const dispatch = useDispatch();
     
     const esquema = yup.object().shape({
@@ -28,7 +28,6 @@ const Fazer = ({}) => {
             <View style={[styles.raia,{backgroundColor:colors.backgroundRaia}]}>
                 <ScrollView 
                     centerContent={true}
-                    
                     fadingEdgeLength={20}>
                     {task.map((task:any) => (<Task key={task.id} task={task} />))}
 
@@ -46,7 +45,7 @@ const Fazer = ({}) => {
                 animationType="slide">
                 
                 {/* borderColor:colors.headerContainer */}
-                <View style={[styles.modal,{backgroundColor:colors.backgroundTask,borderColor:colors.headerContainer}]}>
+                <View style={[styles.modal,{backgroundColor:colors.backgroundTask,borderColor:colors.borderModal}]}>
                 
                 <AntDesign name="closecircleo" size={22} color="#226ED8" onPress={()=> setModal(false)}  style={{position:'absolute', right:0,top:0,paddingTop:16, paddingRight:9}} />
                 
@@ -61,7 +60,7 @@ const Fazer = ({}) => {
                             {({ handleChange, handleBlur, handleSubmit, values,errors, isValid }) => (
                                 <View >
                                     <Text style={{color:'#226ED8', fontSize:20,alignSelf:'center',fontWeight:'bold',textDecorationLine: 'underline'}}>Nova Task</Text>
-                                    <Text style={{color:colors.text, fontSize:11}}>Título</Text>
+                                    <Text style={{color:colors.text, fontSize:11, marginTop:5}}>Título *</Text>
                                     <TextInput
                                         style={[styles.input,{backgroundColor:colors.input, color:colors.text}]}
                                         onChangeText={handleChange('title')}
@@ -104,7 +103,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        
     },
     raia:{
         marginTop:hp('7%'),

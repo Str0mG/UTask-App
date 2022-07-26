@@ -5,10 +5,12 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Feito from '../Kanban/Feito';
 import Fazendo from '../Kanban/Fazendo';
 import Fazer from '../Kanban/Fazer';
+import { useTheme } from "styled-components/native";
 
 const Home2 = ({}) => {
 
     const Tab = createMaterialTopTabNavigator();
+    const {colors} = useTheme()
 
     return (
        <Tab.Navigator
@@ -16,7 +18,9 @@ const Home2 = ({}) => {
             initialRouteName="Fazer"
             screenOptions={{
                 tabBarLabelStyle: { fontSize: 13, fontWeight: 'bold', color: '#fff' },
-                tabBarStyle: { backgroundColor: '#101010' },
+                tabBarStyle: { backgroundColor: colors.headerKanban},
+                tabBarIndicatorStyle: { backgroundColor: colors.indicatorTab },
+
               }}
             initialLayout={{ width: Dimensions.get('window').width }}
        >

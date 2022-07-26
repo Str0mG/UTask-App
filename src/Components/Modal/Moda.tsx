@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Text, View, Image, Appearance, Modal, Switch,TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Image, Appearance, Modal} from 'react-native';
 import {MaterialIcons,Entypo,FontAwesome5,AntDesign} from '@expo/vector-icons';
 
 

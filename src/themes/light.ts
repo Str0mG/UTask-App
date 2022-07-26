@@ -11,6 +11,12 @@ export const light: DefaultTheme = {
         trash:'#DF0000',
         hideDesc:'#002D6C',
         input:'#EEEEEE',
+        borderModal:'#226ED8',
+        headerKanban:'#114FA7',
+        indicatorTab:'#FFD569',
+        backgroudBottomTab:'#ffffff',
+        backgroundApi:'#FFFFFF',
+        insight:'#FBB910',
     },
     images:{
         logoUnect: require('../../assets/lightLogo.png'),
