@@ -52,7 +52,7 @@ const Task = (task:any) => {
     return (
         <View style={[styles.container,{backgroundColor:colors.backgroundTask}]}>
                 <Ionicons name="ios-trash-outline" size={18} color={colors.trash} onPress={handleDelete}  style={{position:'absolute', right:0,top:0, padding:10}}  />
-                <Text style={[{alignSelf:'flex-start',fontWeight:'bold', fontSize:16, padding:10},{color:colors.text}]}>  {task.task.title} </Text>
+                <Text style={[{alignSelf:'flex-start',fontWeight:'bold', fontSize:16, padding:10,textDecorationLine:'line-through'},{color:colors.text}]}>  {task.task.title} </Text>
                 <TouchableWithoutFeedback onPress={handleVisibility} style={{width:140}}>
                     <View style={{flexDirection:'row', paddingLeft:17}}>
                         <Text style={{fontSize:13, paddingTop:11, color:isHide ? colors.text:colors.hideDesc}} >{desc}</Text>
