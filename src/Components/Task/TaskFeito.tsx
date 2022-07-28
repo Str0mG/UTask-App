@@ -60,7 +60,7 @@ const Task = (task:any) => {
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={{}}>
-                    {visible && <Text style={{color:colors.text, maxWidth:wp('52%'), paddingLeft:18, paddingBottom:10,textAlign: 'justify'}}>{task.task.description}+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</Text>}
+                    {visible && <Text style={{color:colors.text, maxWidth:wp('52%'), paddingLeft:18, paddingBottom:10,textAlign: 'justify'}}>{task.task.description}</Text>}
                 </View>
                 <View style={{position:'absolute', right:0,bottom:0, flexDirection:'row',alignItems:'center', padding:8}}>
                     <AntDesign name="leftcircle" size={21} color='#226ED8' onPress={handlePrev} style={{paddingRight:2,paddingBottom:7}}   />
