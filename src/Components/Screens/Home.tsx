@@ -18,7 +18,7 @@ const Home2 = ({}) => {
             initialRouteName="Fazer"
             screenOptions={{
                 tabBarLabelStyle: { fontSize: 13, fontWeight: 'bold', color: '#fff' },
-                tabBarStyle: { backgroundColor: colors.headerKanban},
+                tabBarStyle: { backgroundColor: colors.headerKanban, borderTopWidth:0},
                 tabBarIndicatorStyle: { backgroundColor: colors.indicatorTab },
 
               }}

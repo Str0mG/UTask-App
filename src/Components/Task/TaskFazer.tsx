@@ -55,7 +55,7 @@ const Task = (task:any) => {
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={{}}>
-                    {visible && <Text style={{ maxWidth:230, paddingLeft:18, paddingBottom:10,textAlign: 'justify',color:colors.text}}>{task.task.description}</Text>}
+                    {visible && <Text style={{ maxWidth:wp('58%'), paddingLeft:18,paddingBottom:10,textAlign: 'justify',color:colors.text}}>{task.task.description}+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</Text>}
                 </View>
                 
                 

@@ -1,27 +1,53 @@
 import React from "react";
 import {Calendar} from 'react-native-calendars';
+import {LocaleConfig} from 'react-native-calendars';
 
+LocaleConfig.locales['fr'] = {
+  monthNames: [
+    'Janvier',
+    'Février',
+    'Mars',
+    'Avril',
+    'Mai',
+    'Juin',
+    'Juillet',
+    'Août',
+    'Septembre',
+    'Octobre',
+    'Novembre',
+    'Décembre'
+  ],
+  monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+  dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+  dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+  today: "Aujourd'hui"
+};
+LocaleConfig.defaultLocale = 'fr';
 
 const Calendario = () => {
     
     return (
         <Calendar
             style={{
-                borderWidth: 1,
+                
                 padding: 10,
                 borderRadius: 20,
             }}
             theme={{
-                calendarBackground: '#3D3D3D',
-                textSectionTitleColor: '#b6c1cd',
+
+                calendarBackground: 'none',
+                textSectionTitleColor: '#FFAFAF',
                 selectedDayBackgroundColor: '#3867D6',
-                selectedDayTextColor: '#226ED8',
+                textDisabledColor: '#d9e1e8',
+                selectedDayTextColor: '#FFAFAF',
                 todayTextColor: '#226ED8',
-                dayTextColor: '#ffffff',
-                textSectionTitleDisabledColor: '#bbc3c9',
-                monthTextColor: '#ffffff',
+                dayTextColor: '#7d7c7c',
+                
+                monthTextColor: '#7d7c7c',
                 arrowColor: '#226ED8',
+                disabledArrowColor: '#FFAFAF',
               }}
+              calendarWidth={400}
         />
     );
 }
