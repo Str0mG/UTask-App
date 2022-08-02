@@ -37,6 +37,7 @@ const reducers = (state = INITIAL_STATE, action:any) => {
             const teste4 = {tasks: state.tasks.filter(task => task.id !== action.payload.id)}
             return {tasks:[...teste4['tasks'], action.payload]}
             
+            
         default:
         return state;
     }
