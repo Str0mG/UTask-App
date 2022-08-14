@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Dimensions } from "react-native";
+import { Dimensions } from "react-native";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import Feito from '../Kanban/Feito';

@@ -1,11 +1,10 @@
-import React, {useState} from "react";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Text, View, Image, Appearance} from 'react-native';
-import {MaterialIcons,Entypo,FontAwesome5,AntDesign} from '@expo/vector-icons';
+import React from "react";
+import { StyleSheet, Text, View} from 'react-native';
+import {MaterialIcons,Entypo} from '@expo/vector-icons';
 //@ts-ignore
 import Modal from 'react-native-modalbox';
 import { useTheme } from "styled-components/native";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const MyModal = (props:any) => {
     const {colors} = useTheme()

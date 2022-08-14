@@ -6,9 +6,8 @@ import Modal from 'react-native-modalbox';
 import { useTheme } from "styled-components/native";
 import { useDispatch } from "react-redux";
 import { Formik } from 'formik';
-import * as yup from 'yup'
 import {actions} from '../../actions/task.actions';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const ModalNote = (props:any) => {
     const {colors} = useTheme()
