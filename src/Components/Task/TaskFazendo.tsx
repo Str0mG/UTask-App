@@ -1,6 +1,6 @@
 import React , {useState}from "react";
-import { View, Text, StyleSheet, Button , TouchableWithoutFeedback, Alert} from "react-native";
-import {MaterialIcons,Entypo,AntDesign,Ionicons} from '@expo/vector-icons';
+import { View, Text, StyleSheet,TouchableWithoutFeedback, Alert} from "react-native";
+import {Entypo,AntDesign,Ionicons} from '@expo/vector-icons';
 import {useDispatch} from 'react-redux';
 import {actions} from '../../actions/task.actions';
 import { useTheme } from "styled-components/native";

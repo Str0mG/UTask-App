@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import { View, Text, StyleSheet, Alert, TouchableWithoutFeedback} from "react-native";
-import {MaterialCommunityIcons,Entypo,AntDesign,Ionicons} from '@expo/vector-icons';
+import {Entypo,AntDesign,Ionicons} from '@expo/vector-icons';
 import {useDispatch} from 'react-redux';
 import {actions} from '../../actions/task.actions';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import { useTheme } from "styled-components";
 //props:
 

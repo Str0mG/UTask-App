@@ -5,7 +5,6 @@ import {
   Text,
   View,
   Image,
-  Switch,
   TouchableWithoutFeedback,
 } from "react-native";
 import { FontAwesome5, AntDesign, FontAwesome } from "@expo/vector-icons";

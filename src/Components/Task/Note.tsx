@@ -4,12 +4,8 @@ import {
   Text,
   StyleSheet,
   Alert,
-  TouchableWithoutFeedback,
 } from "react-native";
 import {
-  MaterialIcons,
-  Entypo,
-  AntDesign,
   Ionicons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
@@ -18,7 +14,6 @@ import { actions } from "../../actions/task.actions";
 import { useTheme } from "styled-components/native";
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
 import ModalNote from "../Modal/ModalEdit";
