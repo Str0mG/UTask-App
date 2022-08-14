@@ -45,14 +45,17 @@ const ModalNote = (props:any) => {
                                 <View >
                                     <Text style={{color:'#226ED8', fontSize:20,alignSelf:'center',fontWeight:'bold',textDecorationLine: 'underline'}}>Nova Note</Text>
                                     
-                                    <Text style={{color:colors.text, fontSize:12, paddingTop:20}}>Descrição:</Text>
+                                    <Text style={{color:colors.text, fontSize:12, paddingTop:20}}>Descrição:2</Text>
                                     <TextInput
+                                        
                                         multiline={true}
                                         style={[styles.input,{backgroundColor:colors.input, color:colors.text,marginBottom:7,height:180,textAlignVertical: 'top',}]}
                                         onChangeText={handleChange('description')}
+                                        autoFocus={true}
                                         onBlur={handleBlur('description')}
                                         value={values.description}
                                         selectionColor={colors.text}
+                                        
                                     />
                                     <View style={styles.buttons}>
                                         <Button

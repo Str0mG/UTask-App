@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     raia:{
         marginTop:hp('2%'),
         marginBottom:hp('2%'),
-        height: hp('70%'),
+        height: hp('60%'),
         width:wp('90%'),
         borderRadius:10,
         flexDirection: 'column',

@@ -55,6 +55,7 @@ const ModalAdd = (props:any) => {
                                         onBlur={handleBlur('title')}
                                         value={values.title}
                                         selectionColor={colors.text}
+                                        autoFocus={true}
                                     />
                                     {errors.title && <Text style={{color:'red', fontSize:11}}>{errors.title}</Text>}
                                     <Text style={{color:colors.text, fontSize:11}}>Descrição</Text>
