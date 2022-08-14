@@ -21,14 +21,11 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
+import ModalNote from "../Modal/ModalEdit";
+
 const Task = (task: any) => {
   const { colors } = useTheme();
-  const [visible, setVisible] = useState(false);
-  const [desc, setDesc] = useState("Ler Descrição");
-  const [isHide, setIsHide] = useState(true);
-  const [emoti, setEmoti] = useState<"chevron-small-up" | "chevron-small-down">(
-    "chevron-small-down"
-  );
+  const [modal, setModal] = useState(false);
 
   const dispatch = useDispatch();
   const handleDelete = () => {
@@ -41,14 +38,16 @@ const Task = (task: any) => {
       ]
     );
   };
-  const handleEdit = () => {
-    setVisible(true);
-  };
+
+  
+
+  const toggleModal = (aux:boolean) => setModal(aux);
 
   return (
     <View
       style={[styles.container, { backgroundColor: colors.backgroundTask }]}
     >
+      <MaterialCommunityIcons name="playlist-edit" size={24} color={colors.trash} style={{position:'absolute', right:20,top:0, padding:8,marginRight:10}} onPress={()=> setModal(true)}  />
       <Ionicons
         name="ios-trash-outline"
         size={18}
@@ -68,6 +67,7 @@ const Task = (task: any) => {
       >
         {task.task.description}
       </Text>
+      <ModalNote isOpen={modal} toggleModal={toggleModal} id={task.task.id} desc={task.task.description}/>   
     </View>
   );
 };
