@@ -10,16 +10,12 @@ import * as yup from 'yup'
 import {actions} from '../../actions/task.actions';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-const ModalAdd = (props:any) => {
+const ModalNote = (props:any) => {
     const {colors} = useTheme()
 
     const dispatch = useDispatch()
 
-    const esquema = yup.object().shape({
-        title: yup.string().required('O titulo é obrigatório').min(3, 'O titulo deve ter no mínimo 3 caracteres').max(25, 'O titulo deve ter no máximo 25 caracteres'),
-    })
-
-
+    
     return (
         <Modal
                 isOpen={props.isOpen}
@@ -39,33 +35,27 @@ const ModalAdd = (props:any) => {
             >
                 <AntDesign name="closecircleo" size={22} color="#226ED8" onPress={()=> props.toggleModal(false)}  style={{position:'absolute', right:0,top:0,paddingTop:16, paddingRight:9}} />
                 <Formik
-                        initialValues={{title: '',description: '',id: Date.now(),raia: 0}}
-                        validationSchema={esquema}
+                        initialValues={{description: props.desc,id: props.id,raia: 5}}
+                        
                         onSubmit={(values) => {
-                            dispatch(actions.adicionar(values));
+                            dispatch(actions.edit(values))
                             props.toggleModal(false)
                         }}>
                             {({ handleChange, handleBlur, handleSubmit, values,errors, isValid }) => (
                                 <View >
-                                    <Text style={{color:'#226ED8', fontSize:20,alignSelf:'center',fontWeight:'bold',textDecorationLine: 'underline'}}>Nova Task</Text>
-                                    <Text style={{color:colors.text, fontSize:11, marginTop:5}}>Título *</Text>
+                                    <Text style={{color:'#226ED8', fontSize:20,alignSelf:'center',fontWeight:'bold',textDecorationLine: 'underline'}}>Edit Note</Text>
+                                    
+                                    <Text style={{color:colors.text, fontSize:12, paddingTop:20}}>Descrição:2</Text>
                                     <TextInput
-                                        style={[styles.input,{backgroundColor:colors.input, color:colors.text}]}
-                                        onChangeText={handleChange('title')}
-                                        onBlur={handleBlur('title')}
-                                        value={values.title}
-                                        selectionColor={colors.text}
-                                        autoFocus={true}
-                                    />
-                                    {errors.title && <Text style={{color:'red', fontSize:11}}>{errors.title}</Text>}
-                                    <Text style={{color:colors.text, fontSize:11}}>Descrição</Text>
-                                    <TextInput
+                                        
                                         multiline={true}
-                                        style={[styles.input,{backgroundColor:colors.input, color:colors.text,marginBottom:10,height:100,textAlignVertical: 'top',}]}
+                                        style={[styles.input,{backgroundColor:colors.input, color:colors.text,marginBottom:7,height:180,textAlignVertical: 'top',}]}
                                         onChangeText={handleChange('description')}
+                                        autoFocus={true}
                                         onBlur={handleBlur('description')}
                                         value={values.description}
                                         selectionColor={colors.text}
+                                        
                                     />
                                     <View style={styles.buttons}>
                                         <Button
@@ -85,7 +75,7 @@ const ModalAdd = (props:any) => {
     );
 }
 
-export default ModalAdd;
+export default ModalNote;
 
 
 const styles = StyleSheet.create({
